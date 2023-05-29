@@ -1,0 +1,54 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "KnockoutCounter",
+  "sourceName": "contracts/mixins/KnockoutCounter.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "pool",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tick",
+          "type": "int24"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "isBid",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "pivotTime",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "feeMileage",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint160",
+          "name": "commitEntropy",
+          "type": "uint160"
+        }
+      ],
+      "name": "CrocKnockoutCross",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122010a35d1df5ec364c922706aa96b6b9a7b8f369285276e0dee995938acad8e71864736f6c63430008040033",
+  "deployedBytecode": "0x6080604052600080fdfea264697066735822122010a35d1df5ec364c922706aa96b6b9a7b8f369285276e0dee995938acad8e71864736f6c63430008040033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
