@@ -1,0 +1,88 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "pool",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "int24",
+        "name": "tick",
+        "type": "int24"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isBid",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "pivotTime",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "feeMileage",
+        "type": "uint64"
+      }
+    ],
+    "name": "CrocKnockoutCross",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "input",
+        "type": "bytes"
+      }
+    ],
+    "name": "userCmd",
+    "outputs": [
+      {
+        "internalType": "int128",
+        "name": "baseFlow",
+        "type": "int128"
+      },
+      {
+        "internalType": "int128",
+        "name": "quoteFlow",
+        "type": "int128"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "input",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "int128",
+        "name": "baseFlow",
+        "type": "int128"
+      },
+      {
+        "indexed": false,
+        "internalType": "int128",
+        "name": "quoteFlow",
+        "type": "int128"
+      }
+    ],
+    "name": "CrocWarmCmd",
+    "type": "event"
+  }
+]

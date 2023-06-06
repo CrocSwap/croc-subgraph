@@ -1,0 +1,189 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CrocSwapDex
+    network: mainnet
+    source:
+      abi: CrocSwapDex
+      address: "0xAaAaAAAaA24eEeb8d57D431224f73832bC34f688"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+      abis:
+        - name: CrocSwapDex
+          file: ../../abis/CrocSwapDex.json
+      callHandlers:
+        - function: swap(address,address,uint256,bool,bool,uint128,uint16,uint128,uint128,uint8)
+          handler: handleDirectSwapCall
+      eventHandlers:
+        - event: CrocSwap(indexed address,indexed
+            address,uint256,bool,bool,uint128,uint16,uint128,uint128,uint8,int128,int128)
+          handler: handleDirectSwapEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: HotProxy
+    network: mainnet
+    source:
+      abi: HotProxy
+      address: "0x37e00522Ce66507239d59b541940F99eA19fF81F"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+      abis:
+        - name: HotProxy
+          file: ../../abis/HotProxy.json
+      callHandlers:
+        - function: userCmd(bytes)
+          handler: handleHotProxyCall
+      eventHandlers:
+        - event: CrocHotCmd(bytes,int128,int128)
+          handler: handleHotProxyEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: ColdPath
+    network: mainnet
+    source:
+      abi: ColdPath
+      address: "0xF8fe6fA0D9c778F8d814c838758B57a9Cf1dD710"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Pool
+      abis:
+        - name: ColdPath
+          file: ../../abis/ColdPath.json
+      callHandlers:
+        - function: userCmd(bytes)
+          handler: handleColdPathCall
+        - function: protocolCmd(bytes)
+          handler: handleColdPathProtocolCmdCall
+      eventHandlers:
+        - event: CrocColdCmd(bytes)
+          handler: handleColdPathEvent
+        - event: CrocColdProtocolCmd(bytes)
+          handler: handleColdPathProtocolCmdEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: WarmPath
+    network: mainnet
+    source:
+      abi: WarmPath
+      address: "0xd268767BE4597151Ce2BB4a70A9E368ff26cB195"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Position
+        - LiquidityChange
+      abis:
+        - name: WarmPath
+          file: ../../abis/WarmPath.json
+      callHandlers:
+        - function: userCmd(bytes)
+          handler: handleWarmPathCall
+      eventHandlers:
+        - event: CrocWarmCmd(bytes,int128,int128)
+          handler: handleWarmPathEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: MicroPaths
+    network: mainnet
+    source:
+      abi: MicroPaths
+      address: "0xf241bEf0Ea64020655C70963ef81Fea333752367"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - Position
+        - LiquidityChange
+      abis:
+        - name: MicroPaths
+          file: ../../abis/MicroPaths.json
+      callHandlers:
+        - function: mintRange(uint128,int24,uint128,uint128,uint64,uint64,int24,int24,uint128,bytes32)
+          handler: handleMintRangeCall
+        - function: mintAmbient(uint128,uint128,uint128,uint64,uint64,uint128,bytes32)
+          handler: handleMintAmbientCall
+        - function: burnRange(uint128,int24,uint128,uint128,uint64,uint64,int24,int24,uint128,bytes32)
+          handler: handleBurnRangeCall
+        - function: burnAmbient(uint128,uint128,uint128,uint64,uint64,uint128,bytes32)
+          handler: handleBurnAmbientCall
+        - function: sweepSwap((uint128,uint128,uint128,uint64,uint64),int24,(bool,bool,uint8,uint128,uint128),((uint8,uint16,uint8,uint16,uint8,uint8,uint8),bytes32,address))
+          handler: handleSweepSwapCall
+      eventHandlers:
+        - event: CrocMicroMintAmbient(bytes,bytes)
+          handler: handleMintAmbientEvent
+        - event: CrocMicroMintRange(bytes,bytes)
+          handler: handleMintRangeEvent
+        - event: CrocMicroBurnAmbient(bytes,bytes)
+          handler: handleBurnAmbientEvent
+        - event: CrocMicroBurnRange(bytes,bytes)
+          handler: handleBurnRangeEvent
+        - event: CrocMicroSwap(bytes,bytes)
+          handler: handleSweepSwapEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: KnockoutLiqPath
+    network: mainnet
+    source:
+      abi: KnockoutLiqPath
+      address: "0x7F5D75AdE75646919c923C98D53E9Cc7Be7ea794"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Position
+        - LiquidityChange
+      abis:
+        - name: KnockoutLiqPath
+          file: ../../abis/KnockoutLiqPath.json
+      callHandlers:
+        - function: userCmd(bytes)
+          handler: handleKnockoutCmdCall
+      eventHandlers:
+        - event: CrocKnockoutCmd(bytes,int128,int128)
+          handler: handleKnockoutCmdEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: KnockoutCounter
+    network: mainnet
+    source:
+      abi: KnockoutCounter
+      address: "0x509DE582af6B4658a1830f7882077FBA5523C957"
+      startBlock: 17361660
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - KnockoutCross
+        - Position
+        - LiquidityChange
+      abis:
+        - name: KnockoutCounter
+          file: ../../abis/KnockoutCounter.json
+      eventHandlers:
+        - event: CrocKnockoutCross(indexed bytes32,indexed int24,bool,uint32,uint64,uint160)
+          handler: handleKnockoutCross
+      file: ./src/mapping.ts
