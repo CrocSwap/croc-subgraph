@@ -132,3 +132,5 @@ dist
 # Subgraph generated files
 generated/
 build/
+
+tmp*
