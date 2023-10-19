@@ -1,0 +1,162 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CrocSwapDex
+    network: scroll-sepolia
+    source:
+      abi: CrocSwapDex
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+      abis:
+        - name: CrocSwapDex
+          file: ./abis/CrocSwapDex.json
+      eventHandlers:
+        - event: CrocSwap(indexed address,indexed
+            address,uint256,bool,bool,uint128,uint16,uint128,uint128,uint8,int128,int128)
+          handler: handleDirectSwapEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: HotProxy
+    network: scroll-sepolia
+    source:
+      abi: HotProxy
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+      abis:
+        - name: HotProxy
+          file: ./abis/HotProxy.json
+      eventHandlers:
+        - event: CrocHotCmd(bytes,int128,int128)
+          handler: handleHotProxyEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: ColdPath
+    network: scroll-sepolia
+    source:
+      abi: ColdPath
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Pool
+      abis:
+        - name: ColdPath
+          file: ./abis/ColdPath.json
+      eventHandlers:
+        - event: CrocColdCmd(bytes)
+          handler: handleColdPathEvent
+        - event: CrocColdProtocolCmd(bytes)
+          handler: handleColdPathProtocolCmdEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: WarmPath
+    network: scroll-sepolia
+    source:
+      abi: WarmPath
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Position
+        - LiquidityChange
+      abis:
+        - name: WarmPath
+          file: ./abis/WarmPath.json
+      eventHandlers:
+        - event: CrocWarmCmd(bytes,int128,int128)
+          handler: handleWarmPathEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: MicroPaths
+    network: scroll-sepolia
+    source:
+      abi: MicroPaths
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+        - Position
+        - LiquidityChange
+      abis:
+        - name: MicroPaths
+          file: ./abis/MicroPaths.json
+      eventHandlers:
+        - event: CrocMicroMintAmbient(bytes,bytes)
+          handler: handleMintAmbientEvent
+        - event: CrocMicroMintRange(bytes,bytes)
+          handler: handleMintRangeEvent
+        - event: CrocMicroBurnAmbient(bytes,bytes)
+          handler: handleBurnAmbientEvent
+        - event: CrocMicroBurnRange(bytes,bytes)
+          handler: handleBurnRangeEvent
+        - event: CrocMicroSwap(bytes,bytes)
+          handler: handleSweepSwapEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: KnockoutLiqPath
+    network: scroll-sepolia
+    source:
+      abi: KnockoutLiqPath
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Position
+        - LiquidityChange
+      abis:
+        - name: KnockoutLiqPath
+          file: ./abis/KnockoutLiqPath.json
+      eventHandlers:
+        - event: CrocKnockoutCmd(bytes,int128,int128)
+          handler: handleKnockoutCmdEvent
+      file: ./src/mapping.ts
+  - kind: ethereum
+    name: KnockoutCounter
+    network: scroll-sepolia
+    source:
+      abi: KnockoutCounter
+      address: "0xaaAAAaa6612bd88cD409cb0D70C99556C87A0E8c"
+      startBlock: 1644840
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - KnockoutCross
+        - Position
+        - LiquidityChange
+      abis:
+        - name: KnockoutCounter
+          file: ./abis/KnockoutCounter.json
+      eventHandlers:
+        - event: CrocKnockoutCross(indexed bytes32,indexed
+            int24,bool,uint32,uint64,uint160)
+          handler: handleKnockoutCross
+      file: ./src/mapping.ts
