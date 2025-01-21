@@ -31,7 +31,7 @@ dataSources:
     network: mainnet
     source:
       abi: HotProxy
-      address: "0x37e00522Ce66507239d59b541940F99eA19fF81F"
+      address: "0xa9Dd587ad17Aed82CAc5596B16DCc9DeFEc885Cb"
       startBlock: 17361660
     mapping:
       kind: ethereum/events

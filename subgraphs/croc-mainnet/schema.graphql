@@ -12,6 +12,7 @@ type Swap @entity(immutable: true) {
   time: BigInt!
   pool: Pool!
   isBuy: Boolean!
+  isVault: Boolean!
   inBaseQty: Boolean!
   qty: BigInt!
   limitPrice: BigDecimal
@@ -35,6 +36,7 @@ type LiquidityChange @entity(immutable: true) {
   callIndex: Int!
   pool: Pool!
   user: Bytes!
+  isVault: Boolean!
   block: BigInt!
   time: BigInt!
   positionType: String!
@@ -112,6 +114,22 @@ type UserBalance @entity(immutable: true) {
   time: BigInt!
   user: Bytes!
   token: Bytes!
+  category: String!
+}
+
+"""
+A DexBalanceUpdate entity represents a potential change to a user's internal DEX
+balance for a given token. 
+"""
+type DexBalanceUpdate @entity(immutable: true) {
+  id: Bytes!
+  transactionHash: Bytes!
+  eventIndex: Int!
+  block: BigInt!
+  time: BigInt!
+  user: Bytes!
+  token: Bytes!
+  category: String!
 }
 
 """
